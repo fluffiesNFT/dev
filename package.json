@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "npm install webpack-cli -g",
+    "build" : "npm install -D webpack-cli",
     "start": "npx webpack-dev-server"
   },
   "author": "",
