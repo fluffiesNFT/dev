@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" : "npm install -D webpack-cli",
-    "start": "npx webpack-dev-server"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "eslint-plugin-json": "^2.0.1",
     "eth-sig-util": "^2.5.3",
     "webpack": "^4.43.0",
+    "webpack-command" : "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "web3": "^1.5"
   }
