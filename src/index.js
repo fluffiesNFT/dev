@@ -602,6 +602,7 @@ const initialize = async () => {
         onboarding.stopOnboarding()
       }
   }
+  }
 
 
 	  const initializeAccountButtons = () => {
