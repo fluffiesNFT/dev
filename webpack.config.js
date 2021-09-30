@@ -16,6 +16,8 @@ module.exports = {
     contentBase: DIST,
     port: process.env.PORT,
     writeToDisk: true,
+    compress: true,
+    disableHostCheck: true
   },
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
