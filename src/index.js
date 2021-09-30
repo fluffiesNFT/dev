@@ -622,7 +622,6 @@ const initialize = async () => {
     if (isMetaMaskConnected()) {
       initializeAccountButtons()
     }
-    updateButtons()
   }
 
   function handleNewChain (chainId) {
