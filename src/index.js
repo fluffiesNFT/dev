@@ -648,8 +648,6 @@ const initialize = async () => {
     }
   }
 
-  updateButtons()
-
   if (isMetaMaskInstalled()) {
 
     ethereum.autoRefreshOnNetworkChange = false
