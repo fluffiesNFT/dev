@@ -568,14 +568,7 @@ const isMetaMaskInstalled = () => {
   return Boolean(ethereum && ethereum.isMetaMask)
 }
 
-const initialize = async () => {
-	
-contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")
-	
-	contract.methods.totalSupply().call().then(function(result) {
-		remaining.innerHTML = result
-	  })
-	
+const initialize = async () => {	
   
   let onboarding
   try {
@@ -618,7 +611,11 @@ contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cF
 	  const initializeAccountButtons = () => {
     /**
      * Contract Interactions
-     */
+     */contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")
+	
+	contract.methods.totalSupply().call().then(function(result) {
+		remaining.innerHTML = result
+	  })
          
 	deployButton.onclick = async () => {
 		if(fluffieN.value.length > 0) {
