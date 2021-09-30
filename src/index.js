@@ -575,14 +575,11 @@ const initialize = async () => {
 
   let accounts
   let contract
-  let accountButtonsInitialized = false
   let deployButton = document.getElementById('btn1')
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0
 
   const onClickInstall = () => {
-    onboardButton.innerText = 'Onboarding in progress'
-    onboardButton.disabled = true
     onboarding.startOnboarding()
   }
 
@@ -597,12 +594,7 @@ const initialize = async () => {
     }
   }
 
-  const initializeAccountButtons = () => {
 
-    if (accountButtonsInitialized) {
-      return
-    }
-    accountButtonsInitialized = true
 
     /**
      * Contract Interactions
@@ -614,54 +606,19 @@ const initialize = async () => {
     })
 	}
 
-  }
 
   function handleNewAccounts (newAccounts) {
     accounts = newAccounts
-    accountsDiv.innerHTML = accounts
-    if (isMetaMaskConnected()) {
-      initializeAccountButtons()
-    }
-  }
-
-  function handleNewChain (chainId) {
-    chainIdDiv.innerHTML = chainId
-  }
-
-  function handleNewNetwork (networkId) {
-    networkDiv.innerHTML = networkId
-  }
-
-  async function getNetworkAndChainId () {
-    try {
-      const chainId = await ethereum.request({
-        method: 'eth_chainId',
-      })
-      handleNewChain(chainId)
-
-      const networkId = await ethereum.request({
-        method: 'net_version',
-      })
-      handleNewNetwork(networkId)
-    } catch (err) {
-      console.error(err)
-    }
   }
 
   if (isMetaMaskInstalled()) {
 
     ethereum.autoRefreshOnNetworkChange = false
-    getNetworkAndChainId()
-
-    ethereum.on('chainChanged', handleNewChain)
-    ethereum.on('networkChanged', handleNewNetwork)
-    ethereum.on('accountsChanged', handleNewAccounts)
 
     try {
       const newAccounts = await ethereum.request({
         method: 'eth_accounts',
       })
-      handleNewAccounts(newAccounts)
     } catch (err) {
       console.error('Error on init when getting accounts', err)
     }
