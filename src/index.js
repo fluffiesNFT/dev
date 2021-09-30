@@ -561,6 +561,7 @@ const forwarderOrigin = currentUrl.hostname === 'localhost'
 
 const deployButton = document.getElementById('btn1')
 const fluffieN = document.getElementById('mintBox')
+const remaining = document.getElementById('remaining')
 
 const isMetaMaskInstalled = () => {
   const { ethereum } = window
@@ -568,7 +569,14 @@ const isMetaMaskInstalled = () => {
 }
 
 const initialize = async () => {
-
+	
+contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")
+	
+	contract.methods.totalSupply().call().then(function(result) {
+		remaining.innerHTML = result
+	  })
+	
+  
   let onboarding
   try {
     onboarding = new MetaMaskOnboarding({ forwarderOrigin })
@@ -580,6 +588,7 @@ const initialize = async () => {
   let contract
   
 
+  
   const isMetaMaskConnected = () => accounts && accounts.length > 0
 
   const onClickInstall = () => {
@@ -610,7 +619,7 @@ const initialize = async () => {
     /**
      * Contract Interactions
      */
-    contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")     
+         
 	deployButton.onclick = async () => {
 		if(fluffieN.value.length > 0) {
 	  contract.methods.mintFluffie(1).send({from: accounts[0], value:65000000000000000 * fluffieN.value}).then(function(result) {
