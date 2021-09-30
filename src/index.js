@@ -576,7 +576,7 @@ const initialize = async () => {
   let accounts
   let contract
   let accountButtonsInitialized = false
-  let deployButton = document.getElementbyId('btn1')
+  let deployButton = document.getElementById('btn1')
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0
 
