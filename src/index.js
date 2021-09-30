@@ -559,6 +559,8 @@ const forwarderOrigin = currentUrl.hostname === 'localhost'
   ? 'http://localhost:9010'
   : undefined
 
+const deployButton = document.getElementById('btn1')
+
 const isMetaMaskInstalled = () => {
   const { ethereum } = window
   return Boolean(ethereum && ethereum.isMetaMask)
@@ -575,7 +577,7 @@ const initialize = async () => {
 
   let accounts
   let contract
-  let deployButton = document.getElementById('btn1')
+  
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0
 
@@ -594,8 +596,15 @@ const initialize = async () => {
     }
   }
 
+  const updateButtons = () => {
+  if (isMetaMaskConnected()) {
+      if (onboarding) {
+        onboarding.stopOnboarding()
+      }
+  }
 
 
+	  const initializeAccountButtons = () => {
     /**
      * Contract Interactions
      */
@@ -605,12 +614,19 @@ const initialize = async () => {
       console.log(result)
     })
 	}
+	  }
 
 
   function handleNewAccounts (newAccounts) {
     accounts = newAccounts
+	  if (isMetaMaskConnected()) {
+      initializeAccountButtons()
+    }
+    updateButtons()
   }
 
+	updateButtons()
+	  
   if (isMetaMaskInstalled()) {
 
     ethereum.autoRefreshOnNetworkChange = false
@@ -619,6 +635,7 @@ const initialize = async () => {
       const newAccounts = await ethereum.request({
         method: 'eth_accounts',
       })
+      handleNewAccounts(newAccounts)
     } catch (err) {
       console.error('Error on init when getting accounts', err)
     }
