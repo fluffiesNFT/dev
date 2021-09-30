@@ -612,8 +612,8 @@ const initialize = async () => {
      */
     contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")     
 	deployButton.onclick = async () => {
-		if(fluffieN.innerHTML.length > 0) {
-	  contract.methods.mintFluffie(1).send({from: accounts[0], value:65000000000000000 * fluffieN}).then(function(result) {
+		if(fluffieN.value.length > 0) {
+	  contract.methods.mintFluffie(1).send({from: accounts[0], value:65000000000000000 * fluffieN.value}).then(function(result) {
       console.log(result)
     })
 		}
