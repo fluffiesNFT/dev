@@ -625,7 +625,7 @@ const initialize = async () => {
     }
     updateButtons()
   }
-
+	onClickConnect() 
 	updateButtons()
 	  
   if (isMetaMaskInstalled()) {
