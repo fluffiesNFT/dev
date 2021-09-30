@@ -104,8 +104,8 @@
 				<!-- mint buttons + quickread + gallery + countdown !-->
 				<div class="col-md">
 					<div style="text-align: center">
-					<button type="button" class="btn btn-default btn-mint" id="btn2"><span> Mint 1 - 0.065eth </span></button>
-					<button type="button" class="btn btn-default btn-mint" id="btn1"><span> Mint 3 - 0.195eth </span></button>
+						<input type="text" class="num" id="mintBox" onkeypress="return onlyNumberKey(event)" oninput="updateCost()"/>
+						<button type="button" class="btn btn-default btn-mint" id="btn1"><span id="mintTxt"> Mint - 0.065eth </span></button>
 					</div>
 					<br>
 					
@@ -264,6 +264,25 @@
 
 			if (window.innerHeight > window.innerWidth) {
 				document.getElementById('play').style.marginRight = '15%'
+			}
+			
+			let mintBox = document.getElementById('mintBox')
+			let mintTxt = document.getElementById('mintTxt')
+			function onlyNumberKey(evt) {
+				var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+				if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+					return false;
+				if(parseInt(mintBox.value + String.fromCharCode(evt.keyCode)) < 11)
+					return true;
+					
+				return false;
+			}
+			function updateCost() {
+				if (mintBox.value.length == 0) {
+					mintTxt.innerHTML = "Mint - 0.065eth"
+				} else {
+					mintTxt.innerHTML = "Mint - " + (parseInt(mintBox.value) * 0.065).toString() + "eth"
+				}
 			}
 		</script>
 		<script src="bundle.js" defer></script>
