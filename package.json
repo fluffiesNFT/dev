@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production npx webpack-dev-server"
+    "start": "npx webpack-dev-server --port $PORT --host 0.0.0.0 "
   },
   "author": "",
   "license": "ISC",
