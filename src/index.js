@@ -614,9 +614,9 @@ const initialize = async () => {
      */
 	contract = new web3.eth.Contract(abi, "0x75bB4BE0732DdE880232dF88D994E8d164DF5cFB")
 	
-	//contract.methods.totalSupply().call().then(function(result) {
-	//	remaining.innerHTML = (4444 - result).toString() + " / 4444 remaining"
-	  //})
+	contract.methods.totalSupply().call().then(function(result) {
+		remaining.innerHTML = (4444 - result).toString() + " / 4444 remaining"
+	  })
          
 	deployButton.onclick = async () => {
 		if(fluffieN.value.length > 0) {
